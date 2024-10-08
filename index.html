@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript4</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h2 {
+            color: #333;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+
+
+    <!-- Program 1: Leap Year Checker -->
+    <h2>1. Leap Year Checker</h2>
+    <label for="leapYearInput">Enter a Year: </label>
+    <input type="number" id="leapYearInput">
+    <button onclick="checkLeapYear()">Check Leap Year</button>
+    <p id="leapYearResult"></p> <hr>
+
+    <!-- Program 2: 1st January Sunday Finder -->
+    <h2>2. 1st January Sunday Finder (2014-2050)</h2>
+    <button onclick="findSundays()">Find Sundays</button>
+    <p id="sundayResult"></p><hr>
+
+    <!-- Program 3: Odd or Even Number Checker -->
+    <h2>3. Odd or Even Number Checker (0 to 15)</h2>
+    <button onclick="checkOddEven()">Check Odd or Even</button>
+    <pre id="oddEvenResult"></pre> <hr>
+
+    <!-- Program 4: Palindrome Checker -->
+    <h2>4. Palindrome Checker</h2>
+    <label for="palindromeInput">Enter a String: </label>
+    <input type="text" id="palindromeInput">
+    <button onclick="checkPalindrome()">Check Palindrome</button>
+    <p id="palindromeResult"></p>
+
+    <script>
+        // Program 1: Leap Year Checker
+        function isLeapYear(year) {
+            if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
+                return `${year} is a leap year.`;
+            } else {
+                return `${year} is not a leap year.`;
+            }
+        }
+
+        function checkLeapYear() {
+            const year = document.getElementById('leapYearInput').value;
+            const result = isLeapYear(year);
+            document.getElementById('leapYearResult').innerText = result;
+        }
+
+        // Program 2: 1st January Sunday Finder
+        function findSundays() {
+            let sundays = '';
+            for (let year = 2014; year <= 2050; year++) {
+                let date = new Date(year, 0, 1);
+                if (date.getDay() === 0) {
+                    sundays += `1st January is a Sunday in the year ${year}<br>`;
+                }
+            }
+            document.getElementById('sundayResult').innerHTML = sundays;
+        }
+
+        // Program 3: Odd or Even Number Checker
+        function checkOddEven() {
+            let result = '';
+            for (let i = 0; i <= 15; i++) {
+                if (i % 2 === 0) {
+                    result += `${i} is even\n`;
+                } else {
+                    result += `${i} is odd\n`;
+                }
+            }
+            document.getElementById('oddEvenResult').innerText = result;
+        }
+
+        // Program 4: Palindrome Checker
+        function isPalindrome(str) {
+            let cleanedStr = str.toLowerCase().replace(/[^a-z0-9]/g, '');
+            let reversedStr = cleanedStr.split('').reverse().join('');
+            return cleanedStr === reversedStr ? `${str} is a palindrome.` : `${str} is not a palindrome.`;
+        }
+
+        function checkPalindrome() {
+            const str = document.getElementById('palindromeInput').value;
+            const result = isPalindrome(str);
+            document.getElementById('palindromeResult').innerText = result;
+        }
+    </script>
+
+</body>
+</html>
